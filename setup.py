@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "mysql_enumerator",
-    py_modules=['mysql_enumerator'],
+    name = "pcap_virus_scan",
+    py_modules=['pcap_virus_scan'],
     packages=find_packages(where='src'),
     package_dir={'':'src'},
 )
