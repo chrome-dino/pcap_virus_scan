@@ -110,4 +110,5 @@ class PcapVirusScan():
             self.virus_total(hashes)
         elif self.yara:
             self.yara()
+            
         
