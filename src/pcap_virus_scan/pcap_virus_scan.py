@@ -27,7 +27,7 @@ class PcapVirusScan():
                 os.remove(os.path.join(root,file))
 
         #use tshark to extract downloaded objects
-        process=subprocess.Popen('tshark -r ' + self.pcap + ' --export-objects ' + self.mode + ',\".\\pcap_virus_scan\\src\\pcap_virus_scan\\export_objects\"',shell=True,stdout=subprocess.PIPE)
+        process=subprocess.Popen('tshark -r ' + self.pcap + ' --export-objects ' + self.mode + ',\".\\pcap_virus_scan\\src\\pcap_virus_scan\\export_objects\"',shell=True)
         process.wait()
 
     def yara_mode(self):
