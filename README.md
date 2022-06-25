@@ -41,19 +41,22 @@ Uses the following python libraries:
 ### Help Menu
 
 ```bash
-usage: __main__.py [-h] [-f FILE] [-t TRACE] [-o OUTPUT] [-p PUBLIC] [-l LOCAL]
+usage: __main__.py [-h] -f FILE -m MODE (-k KEY | -r RULES) [-y | --yara | --no-yara]
+                   [-x | --executables | --no-executables] [-v | --virus_total | --no-virus_total]
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -f FILE, --file FILE  Path to input pcap file.
-  -t TRACE, --trace TRACE
-                        Endpoint to trace to.
-  -o OUTPUT, --output OUTPUT
-                        Path to output kml file. Defaults to route_map.kml.
-  -p PUBLIC, --public PUBLIC
-                        Define public IP. Leave blank to auto retrieve.
-  -l LOCAL, --local LOCAL
-                        Define local IP. Leave blank to auto retrieve.
+  -f FILE, --file FILE  pcap file to be analyzed
+  -m MODE, --mode MODE  protocol to export objects from. Choose from http, smb, tftp, imf
+  -k KEY, --key KEY     virus total api key
+  -r RULES, --rules RULES
+                        yara rules file
+  -y, --yara, --no-yara
+                        scan objects with yara
+  -x, --executables, --no-executables
+                        only scan for executable files
+  -v, --virus_total, --no-virus_total
+                        submit objects to virus tota
 ```
 
 ### Video
@@ -62,8 +65,8 @@ optional arguments:
 ### Examples
 
 ```bash
-# extract http objects and submit them to virus total
-$ py -m pcap_virus_scan -f file.pcap -v -k API_KEY -m http
+# extract http objects and submit them to virus total. Only evaluates executable objects
+$ py -m pcap_virus_scan -f file.pcap -v -k API_KEY -m http -x
 
 # extract smb objects and analyze them with yara
 $ py -m pcap_virus_scan -f file.pcap -y -r path_to_yara_rules -m smb
